@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>webpack</title>
+</head>
+<body>
+  <div class="webpack">
+    <div class="container">
+      <h1 class="title">Базовая настройка Webpack 4</h1>
+      <img class="webpack-img" src='img/webpack.png' alt='webpack' width='100%' height="auto">
+      <div class="description">
+        <ol class="list">
+          <li class="list__item">Создаем директорию в которой будет находится файлы</li>
+          <li class="list__item">Переходим в нашу директорию и создаем файл Package.json выполняя команду npm init  .  (Возможно придется поменять name на свое в файле Package.json)</li>
+          <li class="list__item">Затем устанавливаем пакет webpack командой npm install webpack --save-dev</li>
+          <li class="list__item">Создаем файловую систему нашего проекта, которая должна выглядеть примерно следующим образом:
+            Папка node_modules появится сразу после установки пакета, указанного в п.3
+            <br>
+            <img src='img/instr1.png' alt='instruction'>
+          </li>
+          <li class="list__item">
+            Создаем папку SRC, где будут хранится все рабочие файлы проекта: шрифты, изображения, скрипты, файлы css-препроцессора (less, sass, scss - на выбор), а также файлы index.html , где будет стандартная html-страничка, а также файлы index.js, в который мы будем подключать все скриптовые файлы, как модули.
+              <ul class="list-child">
+                <li class="list-child__item">.babelrc - для конфигурации ES2015</li>
+                <li class="list-child__item">.gitignore - для указания в нем файлов и папок, которые не надо загружать на ГИТ (node_modules, различные логи и служебные файлы)</li>
+                <li class="list-child__item">package-lock.json -появляется автоматически, его не трогаем</li>
+                <li class="list-child__item">package.json - это файл с конфигурациями и настройками  для управления пакетами и зависимостями node_modules</li>
+                <li class="list-child__item">webpack.config.js - базовый файл для настройки работы сборщика webpack. В этом файле мы пишем все конфигурации и настраиваем работу плагинов, которые нам понадобятся для работы webpack .  Основная работа будет заключаться в нем.</li>
+              </ul>
+          </li>
+          <li class="list__item">В файле package.json необходимо добавить два скрипта, с помощью которых мы будем запускать сборку нашего проекта в продакшн, а также запуск в режиме разработки.
+          Для этого в командной строке запускаем команду npm install webpack-dev-server --save-dev 	А затем в файле package.json прописываем следующее в разделе scripts:
+          <br>
+          <img src='img/instr2.png' alt='instruction'>
+          <br>
+          <pre>
+"build": "webpack --mode production",
+"dev": "webpack-dev-server --mode development --open",
+          </pre>
+          Установите пакет npm i webpack-cli --save-dev	 и попробуйте запустить npm run build
+          <br>
+          Если в корне проекта появилась папка dist, то все прошло нормально
+          </li>
+        </ol>
+        <div class="description__set">
+          <h3 class="title-sm">Настройка фалйа webpack.config.js</h3>
+          <p>Теперь приступим к настройке конфигурационного файла webpack.config.js
+          </p>
+          <p>Перед этим следует установить npm-пакеты, которые необходимы для работы нашей системы
+             Все пакеты устанавливаются командой npm install далее, следует название пакета - path - и команда, которая говорит, как устанавливать пакеты --save-dev
+             Итого должно получиться: npm install path --save-dev</p>
+          <p>Ниже представлен список пакетов, который нам понадобиться:</p>
+          <ul class="webpack-list">
+            <li class="webpack-list__item">npm i babel-core --save-dev  - для преобразования es6 в стандартный js</li>
+            <li class="webpack-list__item">npm install -D babel-loader@7 --save-dev</li>
+            <li class="webpack-list__item">npm i babel-preset-env --save-dev</li>
+            <li class="webpack-list__item">npm i babel-preset-stage-3 --save-dev</li>
+            <li class="webpack-list__item">npm i css-loader  --save-dev</li>
+            <li class="webpack-list__item">npm i style-loader  --save-dev</li>
+            <li class="webpack-list__item">npm i file-loader --save-dev</li>
+            <li class="webpack-list__item">npm i html-loader --save-dev</li>
+            <li class="webpack-list__item">npm i less --save-dev</li>
+            <li class="webpack-list__item">npm i less-loader --save-dev</li>
+            <li class="webpack-list__item">npm i webpack-cli --save-dev</li>
+            <li class="webpack-list__item">npm install path --save-dev</li>
+          </ul>
+          <p>Устанавливаем webpack плагины:</p>
+          <ul class="webpack-list">
+            <li class="webpack-list__item">extract-text-webpack-plugin@next</li>
+            <li class="webpack-list__item">copy-webpack-plugin</li>
+            <li class="webpack-list__item">html-webpack-plugin</li>
+          </ul>
+          <p>Устанавливаем плагин с приставкой --save-dev</p>
+          <p>Переходим в файл webpack.config.js и
+          размещаем ниже приведенный код в нашем файле</p>
+          <pre class="code-config">
+            <h3 class="code-config__title">webpack.config.js</h3>
+    let path = require('path');
+    let ExtractTextPlugin = require("extract-text-webpack-plugin");
+    let HtmlWebpackPlugin = require('html-webpack-plugin');
+    let CopyWebpackPlugin = require('copy-webpack-plugin');
+
+    let conf = {
+      entry: './src/index.js',
+      output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'main.js',
+          //publicPath: 'dist/'
+      },
+        devServer: {
+          overlay: true
+      },
+      module: {
+        rules:[
+          {
+            test: /\.js$/,
+            loader: 'babel-loader',
+            //exclude: '/node_modules/'
+          },
+          {
+             test: /\.(woff(2)?|ttf|eot|otf)(\?v=\d+\.\d+\.\d+)?$/,
+             use: [{
+                 loader: 'file-loader',
+                 options: {
+                     name: '[name].[ext]',
+                     outputPath: 'fonts/'
+                 }
+              }]
+          },
+          {
+            test: /\.sass/,
+            use: [{
+              loader: 'style-loader'
+            }, {
+              loader: 'css-loader'
+            },{
+            loader: 'sass-loader'
+          }]
+          },
+          {
+            test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+            use: [{
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]',
+                    outputPath: 'fonts/'
+                }
+            }]
+          },
+          {
+           test: /\.(png|svg|jpg)$/,
+           use: [{
+             loader: 'file-loader',
+             options: {
+               name: '[name].[ext]',
+               outputPath: 'img/'
+             }
+           }]
+          }
+
+        ]
+      },
+      plugins: [
+        //new ExtractTextPlugin(main.css)
+        new HtmlWebpackPlugin({
+          inject: false,
+          hash: true,
+          template: './src/index.html',
+          filename: 'index.html'
+        }),
+        new CopyWebpackPlugin([
+          {
+            from: './src/img',
+            to: './img'
+          }
+        ])
+      ]
+    };
+
+    module.exports = conf;
+
+          </pre>
+          <p>В файле index.html, что лежит в src создаем стандартный html-документ и подключаем "main.js":<br>
+
+          В "index.js" в папке src будут подключаться все скриптовые модули и файл стилей: <br></p>
+          <img src="img/instr3.png" alt="instruction"><br>
+           <p>Потом после выполнения команды npm run build этот файл будет преобразовываться в main.js в папке dist, а все скриптовые модули и файлы стилей будут распологаться в одном подключенном файле.</p>
+
+        </div>
+      </div>
+      <div class="resume">
+        <h3 class="title">Резюмируя</h3>
+        <div class="resume-descr">
+          Если коротко подвести итог, то последовательность действий, по настройке webpack следующая:
+          <ol class="resume-list">
+            <li class="resume-list__item">Создаем файловую систему проекта(шрифты, картинки, стили, скрипты) и в нем создаем файл package.json</li>
+            <li class="resume-list__item">Устанавливаем необходимые модули</li>
+            <li class="resume-list__item">Настраиваем фалй webpack.config.js</li>
+            <li class="resume-list__item">Запускаем сборку проекта коммандой npm run build или режим разработки коммандой npm run dev</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </dvi>
+
+<script src="main.js"></script>
+</body>
+</html>

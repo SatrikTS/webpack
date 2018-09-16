@@ -1,0 +1,74 @@
+@import "fonts.scss";
+
+body{
+  color: #000;
+  background: #fff;
+  font-family: "Avenir Next";
+}
+
+p{
+  line-height: 28px;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.webpack-img{
+  width: 700px;
+  height: auto;
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+.title{
+  text-align: center;
+}
+
+.list {
+    max-width: 100%;
+    width: 700px;
+    background: #efefef;
+    font-family: "Avenir Next";
+    padding: 20px 50px;
+    margin: 30px auto;
+    &__item{
+      font-size: 17px;
+      line-height: 25px;
+      margin-bottom: 15px;
+    }
+}
+
+.list-child {
+    border: 1px dashed #000;
+    padding: 20px 40px;
+}
+
+.webpack-list {
+    border: 1px dashed #000;
+    padding: 20px 40px;
+    max-width: 100%;
+    width: 550px;
+    background: #95A5A6;
+}
+
+.code-config {
+    background: #EFEFEF;
+    width: 666px;
+    max-width: 100%;
+    padding: 30px;
+    font-size: 14px;
+    margin: 30px auto;
+    &__title{
+      text-align: center;
+    }
+}
+
+.resume {
+    border: 1px dashed #000;
+    padding: 30px;
+    margin: 40px auto;
+}
