@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edgea">
+    <title>Progforce</title>
+</head>
+<body>
+
+        <header>
+            <div class="container mb-4">
+                <div class="row justify-content-between">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">client</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="admin.html">admin</a>
+                        </li>
+                    </ul>
+
+                    <!-- <div class="basket">
+                        <img src="/img/icon-cart.png" alt="basket">
+                        <span class="js-basket-count basket__count">0</span>
+                        <span class="js-basket-remove basket__remove">Remove all</span>
+                    </div> -->
+
+                </div>
+
+            </div>
+        </header>
+        <div class="container">
+            <div class="admin-panel">
+                <h3>Add new products</h3>
+                <form action="http://5df0fe899df6fb00142bd6d8.mockapi.io/Product" method="PUT" class="form form--product js-product-form">
+                    <div class="form-group">
+                        <label for="code">Name</label>
+                        <input type="text" name="title" placeholder="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="code">Price</label>
+                        <input type="number" name="price" placeholder="price">
+                    </div>
+                    <div class="form-group">
+                        <label for="code">Image</label>
+                        <input type="text" name="image" placeholder="image src">
+                    </div>
+                    <div class="form-group">
+                         <label for="code">Description</label>
+                        <textarea name="description" rows="1" cols="47" placeholder="description"></textarea>
+                    </div>
+                    <div class="form-block">
+                        <div class="form-check">
+                            <label for="available">
+                                available
+                            </label>
+                            <input type="checkbox" name="available" id="available">
+                        </div>
+                        <button type="submit" name="button" class="btn btn-success"> Add new </button>
+                    </div>
+                </form>
+                <div class="producta-add-list js-products-list">
+
+                </div>
+            </div>
+        </div>
+
+<script id="product-add-hbtpl" type="text/x-handlebars-template">
+    {{#each this}}
+        <div class="product-add js-product" data-id="{{id}}">
+            <div class="product-add__collumn">{{id}}</div>
+            <div class="product-add__collumn">{{img}}</div>
+            <div class="product-add__collumn">{{price}}</div>
+            <div class="product-add__collumn">{{available}}</div>
+            <div class="product-add__collumn">{{title}}</div>
+            <div class="product-add__collumn">{{desc}}</div>
+        </div>
+    {{/each}}
+</script>
+<script id="product-msg-hbtpl" type="text/x-handlebars-template">
+    <div class="alert alert-success">
+        Product was added
+    </div>
+</script>
+
+<script src="main.js"></script>
+
+
+</body>
+</html>

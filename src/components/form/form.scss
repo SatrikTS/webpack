@@ -1,0 +1,59 @@
+.form {
+    position: relative;
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            font-size: 12px;
+        }
+    }
+
+    .form-check {
+        display: flex;
+        align-items: baseline;
+
+        label {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    }
+
+    input {
+        padding: 10px;
+    }
+
+    textarea {
+        padding: 10px;
+    }
+
+    .form-block {
+        display: flex;
+        padding-top: 25px;
+    }
+
+    &--product {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+
+        .form-group {
+            width: 32.333%;
+            margin-right: 1%;
+
+            &:nth-child(3n) {
+                margin-right: 0;
+            }
+        }
+
+        .form-check {
+            padding: 0;
+            margin-right: 20px;
+        }
+
+        button {
+            height: 46px;
+        }
+    }
+}

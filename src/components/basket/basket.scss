@@ -1,0 +1,36 @@
+.basket {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    img {
+        max-width: 100%;
+        height: auto;
+        width: 32px;
+    }
+
+    &__remove {
+        position: absolute;
+        display: none;
+    }
+
+    &__count {
+        position: absolute;
+        padding: 3px 4px;
+        background: #28a745;
+        border-radius: 100%;
+        font-size: 11px;
+        right: 0;
+        bottom: -6px;
+        font-weight: 700;
+        min-width: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

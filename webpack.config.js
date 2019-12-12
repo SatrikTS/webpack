@@ -2,6 +2,8 @@ let path = require('path');
 let ExtractTextPlugin = require("extract-text-webpack-plugin");
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let CopyWebpackPlugin = require('copy-webpack-plugin');
+let autoprefixer = require('autoprefixer');
+const webpack = require('webpack');
 
 let conf = {
   entry: './src/index.js',
@@ -36,7 +38,19 @@ let conf = {
           loader: 'style-loader'
         }, {
           loader: 'css-loader'
-        },{
+        },
+        {
+            loader: 'postcss-loader',
+            options: {
+                plugins: [
+                    autoprefixer({
+                        browsers:['ie >= 8', 'last 4 version']
+                    })
+                ],
+                sourceMap: true
+            }
+        },
+        {
         loader: 'sass-loader'
       }]
       },
@@ -71,12 +85,21 @@ let conf = {
       template: './src/index.html',
       filename: 'index.html'
     }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      hash: true,
+      template: './src/admin.html',
+      filename: 'admin.html'
+    }),
     new CopyWebpackPlugin([
       {
         from: './src/img',
         to: './img'
       }
-    ])
+    ]),
+        new webpack.ProvidePlugin({
+        Promise: 'es6-promise-promise', // works as expected
+    })
   ]
 };
 
