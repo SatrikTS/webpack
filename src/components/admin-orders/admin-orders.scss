@@ -1,0 +1,54 @@
+.admin-orders {
+    position: relative;
+    padding-bottom: 60px;
+
+    &__wrap {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-order-item {
+        display: flex;
+        margin-bottom: 16px;
+        border: 1px solid #000;
+
+        @media (max-width: 575.98px) {
+            max-width: 98%;
+            margin: 0 auto 20px;
+        }
+
+        &__user {
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+        }
+
+        &__productlist {
+            padding: 16px;
+            flex: 1;
+        }
+
+        &__mark {
+            font-size: 12px;
+            margin-right: 0;
+            font-weight: 700;
+        }
+
+        &__title {
+            font-weight: 700;
+        }
+
+        &__label {
+            margin-right: 20px;
+        }
+
+        &__product {
+            padding: 10px 0;
+            border-bottom: 1px solid #000;
+
+            &:last-child {
+                border: none;
+            }
+        }
+    }
+}

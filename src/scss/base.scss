@@ -2,8 +2,58 @@ body {
     color: #000;
     background: #fff;
     font-family: "Avenir Next";
+    overflow-x: hidden;
 }
 
 p {
     line-height: 28px;
+}
+
+header {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 4px 0;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+
+    @media (max-width: 575.98px) {
+        padding: 4px 16px;
+    }
+}
+
+.body-admin {
+    background: #fff;
+}
+
+.store {
+    background: #f8f9fa ;
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
+.admin-panel {
+    padding-top: 48px;
+}
+
+.alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+}
+
+.is-hidden {
+    display: none;
+}
+
+.nav-link.active {
+    background: #000;
+    color: #fff;
 }

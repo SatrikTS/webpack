@@ -4,9 +4,47 @@
     .form-group {
         display: flex;
         flex-direction: column;
+        position: relative;
 
         label {
             font-size: 12px;
+        }
+
+        &.is-error {
+            input {
+                border-color: #dc3545;
+            }
+
+            .error-message {
+                display: block;
+            }
+        }
+
+        &--image {
+            .image-mask {
+                cursor: pointer;
+                border: 1px solid #6c757d;
+                background: #fff;
+                width: 100%;
+                height: 46px;
+                position: absolute;
+                top: 26px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                @media (max-width: 767.98px) {
+                    width: 98%;
+                }
+
+                @media (max-width: 575.98px) {
+                    top: 6px;
+                }
+            }
+
+            input {
+                opacity: 0;
+            }
         }
     }
 
@@ -22,7 +60,12 @@
 
     input {
         padding: 10px;
+
+        // &:invalid {
+        //     border-color: #dc3545;
+        // }
     }
+
 
     textarea {
         padding: 10px;
@@ -31,6 +74,14 @@
     .form-block {
         display: flex;
         padding-top: 25px;
+        margin-right: 1%;
+
+        @media (max-width: 767.98px) {
+            width: 100%;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+        }
     }
 
     &--product {
@@ -41,6 +92,14 @@
         .form-group {
             width: 32.333%;
             margin-right: 1%;
+
+            @media (max-width: 767.98px) {
+                width: 49%;
+            }
+
+            @media (max-width: 575.98px) {
+                width: 100%;
+            }
 
             &:nth-child(3n) {
                 margin-right: 0;
@@ -54,6 +113,38 @@
 
         button {
             height: 46px;
+        }
+    }
+
+    &--vertical {
+        button {
+            width: 100%;
+        }
+    }
+
+    .error-message {
+        display: none;
+        font-size: 13px;
+        color: #dc3545;
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+    }
+
+    .form-img-output {
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+        display: none;
+
+        &.is-active {
+            display: block;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     }
 }
